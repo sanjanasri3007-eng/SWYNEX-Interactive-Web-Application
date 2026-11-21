@@ -1,55 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Report</title>
-
+    <title>Anonymous Report - SafeSpeak</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-
-<div class="logo">
-🛡 SafeSpeak
-</div>
-
-<nav>
-
-<a href="index.html">Home</a>
-
-<a href="report.html">Report</a>
-
-<a href="track.html">Track</a>
-
-<a href="dashboard.html">Dashboard</a>
-
-</nav>
-
-<button class="exit-btn" onclick="quickExit()">
-Quick Exit
-</button>
-
+    <div class="logo">🛡 SafeSpeak</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="track.html">Track</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <button class="exit-btn" onclick="quickExit()">Quick Exit</button>
 </header>
 
 <section class="report-page">
-
     <h1>Anonymous Incident Report</h1>
-
     <p>
-        Your identity will remain private.<br>
-        Please provide as much information as you are comfortable sharing.
+        Please provide the information you are comfortable sharing.
+        This demonstration stores reports in your browser.
     </p>
 
-    <!-- Removed action="review.html" -->
-    <form id="reportForm">
+    <form id="reportForm" onsubmit="event.preventDefault(); saveReport();">
 
-        <label>Incident Category</label>
-
-        <select id="category">
+        <label for="category">Incident Category</label>
+        <select id="category" required>
+            <option value="">Select a category</option>
             <option>Sexual Harassment</option>
             <option>Workplace Harassment</option>
             <option>Cyberbullying</option>
@@ -59,54 +41,29 @@ Quick Exit
             <option>Other</option>
         </select>
 
-        <br><br>
+        <label for="date">Date of Incident</label>
+        <input type="date" id="date" required>
 
-        <label>Date of Incident</label><br>
+        <label for="location">Location</label>
+        <input type="text" id="location"
+            placeholder="Enter location" maxlength="150" required>
 
-        <input type="date" id="date">
+        <label for="description">Describe What Happened</label>
+        <textarea id="description" rows="8"
+            placeholder="Write your experience..." maxlength="3000"
+            required></textarea>
 
-        <br><br>
-
-        <label>Location</label><br>
-
-        <input
-            type="text"
-            id="location"
-            placeholder="Enter location">
-
-        <br><br>
-
-        <label>Describe What Happened</label><br>
-
-        <textarea
-            id="description"
-            rows="8"
-            placeholder="Write your experience..."></textarea>
-
-        <br><br>
-
-        <button
-            type="button"
-            class="btn"
-            onclick="startListening()">
+        <button type="button" class="btn" onclick="startListening()">
             🎤 Start Voice Recording
         </button>
 
-        <br><br>
-
-        <button
-            type="button"
-            class="btn"
-            onclick="saveReport()">
+        <button type="submit" class="btn">
             Continue
         </button>
 
     </form>
-
 </section>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>
