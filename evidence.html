@@ -1,7 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Upload Evidence</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -15,15 +18,10 @@
 </div>
 
 <nav>
-
 <a href="index.html">Home</a>
-
 <a href="report.html">Report</a>
-
 <a href="track.html">Track</a>
-
 <a href="dashboard.html">Dashboard</a>
-
 </nav>
 
 <button class="exit-btn" onclick="quickExit()">
@@ -37,46 +35,79 @@ Quick Exit
 <h1>Upload Evidence (Optional)</h1>
 
 <p>
-Upload screenshots, images or documents related to your report.
+Upload screenshots, images or PDF documents related to your report.
 This step is optional.
 </p>
 
 <input type="file" id="evidenceFile" accept="image/*,.pdf">
 
-<br><br>
+<p id="fileName"></p>
 
-<img id="preview" style="max-width:300px; display:none; border-radius:10px;">
+<img id="preview"
+style="max-width:300px; display:none; border-radius:10px;">
 
-<br><br>
+<p id="fileMessage"></p>
 
-<a href="complaint.html">
-    <button type="button" class="btn">
-        Continue to Complaint
-    </button>
+<br>
+
+<a href="complaint.html" class="btn">
+Continue to Complaint
 </a>
+
+<p>
+Note: This demo only previews the selected file in your browser.
+It does not upload or permanently store evidence.
+</p>
 
 </section>
 
 <script>
 
-document.getElementById("evidenceFile").addEventListener("change", function(){
+const evidenceFile = document.getElementById("evidenceFile");
+const preview = document.getElementById("preview");
+const fileName = document.getElementById("fileName");
+const fileMessage = document.getElementById("fileMessage");
+
+evidenceFile.addEventListener("change", function() {
 
 const file = this.files[0];
 
-if(file){
+preview.style.display = "none";
+preview.removeAttribute("src");
+fileName.textContent = "";
+fileMessage.textContent = "";
+
+if (!file) return;
+
+const allowedTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "application/pdf"];
+
+if (!allowedTypes.includes(file.type)) {
+fileMessage.textContent = "Please select a valid image or PDF file.";
+this.value = "";
+return;
+}
+
+if (file.size > 5 * 1024 * 1024) {
+fileMessage.textContent = "File size must be less than 5 MB.";
+this.value = "";
+return;
+}
+
+fileName.textContent = "Selected file: " + file.name;
+
+if (file.type.startsWith("image/")) {
 
 const reader = new FileReader();
 
-reader.onload = function(e){
-
-document.getElementById("preview").src = e.target.result;
-
-document.getElementById("preview").style.display = "block";
-
+reader.onload = function(event) {
+preview.src = event.target.result;
+preview.style.display = "block";
 };
 
 reader.readAsDataURL(file);
 
+} else {
+fileMessage.textContent = "PDF selected successfully. Preview is not available.";
 }
 
 });
