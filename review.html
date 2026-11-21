@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Review Report</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -15,15 +17,10 @@
 </div>
 
 <nav>
-
 <a href="index.html">Home</a>
-
 <a href="report.html">Report</a>
-
 <a href="track.html">Track</a>
-
 <a href="dashboard.html">Dashboard</a>
-
 </nav>
 
 <button class="exit-btn" onclick="quickExit()">
@@ -33,19 +30,14 @@ Quick Exit
 </header>
 
 <section class="report-page">
+
 <div class="progress">
-
 <span class="done">✔ Report</span>
-
 <span class="current">● Review</span>
-
 <span>○ Evidence</span>
-
 <span>○ Complaint</span>
-
 <span>○ Success</span>
-
-</div>    
+</div>
 
 <h1>Review Your Report</h1>
 
@@ -55,18 +47,17 @@ Quick Exit
 
 <h3>Report Summary</h3>
 
-<p>
-Incident Category:
+<p>Case ID: <strong id="reviewCaseID"></strong></p>
+
+<p>Incident Category:
 <strong id="reviewCategory"></strong>
 </p>
 
-<p>
-Date:
+<p>Date:
 <strong id="reviewDate"></strong>
 </p>
 
-<p>
-Location:
+<p>Location:
 <strong id="reviewLocation"></strong>
 </p>
 
@@ -78,28 +69,29 @@ Location:
 
 <br>
 
-<a href="evidence.html">
-<button class="btn">
+<a href="evidence.html" class="btn">
 Continue to Evidence
-</button>
 </a>
 
 </section>
 
-<script>
+<script src="script.js"></script>
 
-document.getElementById("reviewCategory").innerHTML =
+<script>
+document.getElementById("reviewCaseID").textContent =
+localStorage.getItem("currentCaseID") || "Not Generated";
+
+document.getElementById("reviewCategory").textContent =
 localStorage.getItem("category") || "Not Provided";
 
-document.getElementById("reviewDate").innerHTML =
+document.getElementById("reviewDate").textContent =
 localStorage.getItem("date") || "Not Provided";
 
-document.getElementById("reviewLocation").innerHTML =
+document.getElementById("reviewLocation").textContent =
 localStorage.getItem("location") || "Not Provided";
 
-document.getElementById("reviewDescription").innerHTML =
+document.getElementById("reviewDescription").textContent =
 localStorage.getItem("description") || "No Description";
-
 </script>
 
 </body>
