@@ -1,10 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Complaint Preview</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complaint Preview</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
@@ -14,15 +18,10 @@
 </div>
 
 <nav>
-
 <a href="index.html">Home</a>
-
 <a href="report.html">Report</a>
-
 <a href="track.html">Track</a>
-
 <a href="dashboard.html">Dashboard</a>
-
 </nav>
 
 <button class="exit-btn" onclick="quickExit()">
@@ -36,29 +35,36 @@ Quick Exit
 <h1>Complaint Preview</h1>
 
 <p>
-SafeSpeak has converted your report into a structured complaint.
+Your report has been converted into a structured complaint preview.
 </p>
 
 <div class="summary-box">
 
-<h3>Official Complaint</h3>
+<h3>Official Complaint Preview</h3>
+
+<p><strong>Case ID:</strong> <span id="complaintCaseID"></span></p>
 
 <p id="complaintText"></p>
 
 </div>
 
-<br>
+<p>
+You can download this complaint as a PDF for your records.
+</p>
 
 <button class="btn" onclick="downloadAndFinish()">
 Download PDF & Finish
 </button>
-
 
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
 
+<script>
+document.getElementById("complaintCaseID").textContent =
+localStorage.getItem("currentCaseID") || "Not Generated";
+</script>
 
 </body>
 </html>
