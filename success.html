@@ -1,12 +1,12 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Report Submitted</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -18,15 +18,10 @@
 </div>
 
 <nav>
-
 <a href="index.html">Home</a>
-
 <a href="report.html">Report</a>
-
 <a href="track.html">Track</a>
-
 <a href="dashboard.html">Dashboard</a>
-
 </nav>
 
 <button class="exit-btn" onclick="quickExit()">
@@ -35,24 +30,35 @@ Quick Exit
 
 </header>
 
-<h1>Report Submitted Successfully</h1>
+<section class="report-page">
 
-<p>Your anonymous complaint has been generated.</p>
+<h1>Report Submitted Successfully!</h1>
+
+<p>Your report has been saved in this browser.</p>
+
+<p>Your Case ID:</p>
 
 <h2 id="caseID"></h2>
 
-<a href="index.html">
-<button class="btn">
-Return Home
-</button>
-</a>
-<a href="tips.html">
-<button class="btn">
-Safety Tips
-</button>
+<p>Keep your Case ID to track your report later.</p>
+
+<a href="track.html" class="btn">
+Track Your Report
 </a>
 
-</div>
+<a href="dashboard.html" class="btn">
+View Dashboard
+</a>
+
+<a href="index.html" class="btn">
+Return Home
+</a>
+
+<a href="tips.html" class="btn">
+Safety Tips
+</a>
+
+</section>
 
 <script src="script.js"></script>
 
@@ -61,5 +67,4 @@ generateCaseID();
 </script>
 
 </body>
-
 </html>
